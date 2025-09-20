@@ -31,7 +31,7 @@ describe('AuthService', () => {
 
   describe('validateUser', () => {
     it('should return user without password when credentials are valid', async () => {
-      const result = await service.validateUser('admin', 'admin123');
+      const result = await service.validateUser('admin', 'Admin@2024!');
       expect(result).toEqual({
         id: 1,
         username: 'admin',
@@ -40,7 +40,7 @@ describe('AuthService', () => {
     });
 
     it('should return null when username is invalid', async () => {
-      const result = await service.validateUser('invalid', 'admin123');
+      const result = await service.validateUser('invalid', 'Admin@2024!');
       expect(result).toBeNull();
     });
 

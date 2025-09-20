@@ -3,11 +3,38 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiBody } from '@nes
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { LoginDto } from './dto/login.dto';
+import { RegisterDto } from './dto/register.dto';
 
 @ApiTags('Autenticação')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
+
+  @Post('register')
+  @ApiOperation({ summary: 'Registrar novo usuário' })
+  @ApiBody({ type: RegisterDto })
+  @ApiResponse({ 
+    status: 201, 
+    description: 'Usuário registrado com sucesso',
+    schema: {
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+        user: {
+          type: 'object',
+          properties: {
+            id: { type: 'number' },
+            username: { type: 'string' }
+          }
+        }
+      }
+    }
+  })
+  @ApiResponse({ status: 409, description: 'Nome de usuário já existe' })
+  @ApiResponse({ status: 400, description: 'Dados inválidos' })
+  async register(@Body() registerDto: RegisterDto) {
+    return this.authService.register(registerDto);
+  }
 
   @Post('login')
   @ApiOperation({ summary: 'Fazer login e obter token JWT' })
@@ -23,8 +50,7 @@ export class AuthController {
           type: 'object',
           properties: {
             id: { type: 'number' },
-            username: { type: 'string' },
-            role: { type: 'string' }
+            username: { type: 'string' }
           }
         }
       }
@@ -48,4 +74,6 @@ export class AuthController {
   getProfile(@Request() req: any) {
     return req.user;
   }
+
+
 }

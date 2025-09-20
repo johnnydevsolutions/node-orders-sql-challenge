@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty, MinLength, Matches } from 'class-validator';
 
-export class LoginDto {
+export class RegisterDto {
   @ApiProperty({
     description: 'Nome de usuário',
     example: 'joao123',
@@ -27,4 +27,6 @@ export class LoginDto {
     }
   )
   password!: string;
+
+
 }

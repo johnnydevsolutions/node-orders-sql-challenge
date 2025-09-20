@@ -35,7 +35,7 @@ describe('AuthController', () => {
     it('should return access token when credentials are valid', async () => {
       const loginDto: LoginDto = {
         username: 'admin',
-        password: 'admin123',
+        password: 'Admin@2024!',
       };
 
       const user = { id: 1, username: 'admin', role: 'admin' };
@@ -50,7 +50,7 @@ describe('AuthController', () => {
       const result = await controller.login(loginDto);
 
       expect(result).toEqual(loginResult);
-      expect(mockAuthService.validateUser).toHaveBeenCalledWith('admin', 'admin123');
+      expect(mockAuthService.validateUser).toHaveBeenCalledWith('admin', 'Admin@2024!');
       expect(mockAuthService.login).toHaveBeenCalledWith(user);
     });
 
