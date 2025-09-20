@@ -72,21 +72,31 @@ npm start
 
 #### 🚀 TESTE RÁPIDO (Recomendado para Recrutadores)
 
-**Opção 1 - Script Automático:**
+**Opção 1 - Via Docker (Mais Simples):**
+```powershell
+# Subir o container com SQLite já instalado
+docker compose up --build
+
+# Em outro terminal, executar teste SQL dentro do container
+docker compose exec api sh sql/teste-docker.sh
+```
+
+**Opção 2 - Script Local (Requer SQLite instalado):**
 ```powershell
 # Execute o script de teste rápido
 .\sql\teste-rapido.ps1
 ```
 
-**Opção 2 - Comando Único:**
+**Opção 3 - Comando Único Local:**
 ```powershell
 # Executa tudo de uma vez (schema + dados + consultas)
-Get-Content sql\exercicio2-sqlite-completo.sql | C:\sqlite\sqlite3.exe escola_teste.db
+Get-Content sql\exercicio2-sqlite-completo.sql | sqlite3 escola_teste.db
 ```
 
 #### 📋 Instruções Detalhadas
 - **Para recrutadores:** Consulte `sql/INSTRUCOES_RECRUTADOR.md`
-- **Pré-requisito:** SQLite instalado (instruções incluídas no arquivo)
+- **Instalação SQLite:** Consulte `INSTALACAO-SQLITE.md` para guia completo
+- **Pré-requisito:** SQLite instalado (múltiplas opções disponíveis)
 - **Tempo estimado:** 5-10 minutos
 
 #### 🔧 Teste Passo a Passo
