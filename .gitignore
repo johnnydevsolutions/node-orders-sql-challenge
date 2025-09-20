@@ -1,0 +1,15 @@
+node_modules
+dist
+.env
+coverage
+.DS_Store
+
+# Arquivos gerados pelos testes SQL (temporários)
+*.db
+estrutura_banco.txt
+escola_*.db
+
+# Arquivos de saída/resultado temporários
+actual-output.json
+resposta-*.json
+resultado-*.json
