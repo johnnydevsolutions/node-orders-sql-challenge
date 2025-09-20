@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsNotEmpty, MinLength, Matches } from 'class-validator';
+import { IsString, IsNotEmpty, Matches, MinLength } from 'class-validator';
 
 export class RegisterDto {
   @ApiProperty({
@@ -19,11 +19,10 @@ export class RegisterDto {
   })
   @IsString()
   @IsNotEmpty()
-  @MinLength(8)
   @Matches(
-    /^(?=.*[0-9])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/,
+    /^(?=.*[0-9])(?=.*[!@#$%^&*()_+=\-]).{8,}$/,
     {
-      message: 'A senha deve ter pelo menos 8 caracteres, incluindo pelo menos 1 número e 1 caractere especial (!@#$%^&*()_+-=[]{};\':"|,.<>/?)',
+      message: 'A senha deve ter pelo menos 8 caracteres, incluindo pelo menos 1 número e 1 caractere especial (!@#$%^&*()_+-=)',
     }
   )
   password!: string;
